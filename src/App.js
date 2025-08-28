@@ -1,50 +1,115 @@
 import React from "react";
 import "./App.css";
 
-function App() {
+const projects = [
+  {
+    title: "Frontend Portfolio (HTML/CSS/JS)",
+    description:
+      "Black & white minimalist site showcasing JavaScript projects and UI work.",
+    stack: ["HTML", "CSS", "JavaScript"],
+    demo: "https://ayan-dini1.github.io/portfolio/",
+    repo: "https://github.com/Ayan-Dini1/portfolio",
+  },
+  {
+    title: "React Portfolio (this site)",
+    description:
+      "Portfolio built with React and deployed on Vercel. Clean layout and responsive design.",
+    stack: ["React", "CSS"],
+    demo: "https://react-portfolio-ten-lilac-30.vercel.app/",
+    repo: "https://github.com/Ayan-Dini1/react-portfolio",
+  },
+  // Add more projects here when ready
+];
+
+export default function App() {
   return (
-    <div className="App">
+    <div className="wrapper">
       <header className="header">
-        <h1>👋 Hi, I’m Ayan Dini</h1>
-        <p>Frontend Developer | Building responsive, modern web apps</p>
+        <h1 className="title">Hi, I’m Ayan Dini 👋</h1>
+        <p className="subtitle">Frontend Developer • React • JavaScript</p>
+        <div className="inline-links" style={{ marginTop: 10 }}>
+          <a href="mailto:diniayaaaaan@gmail.com">Email</a>
+          <a
+            href="https://www.linkedin.com/in/ayan-dini-6658919a/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            LinkedIn
+          </a>
+          <a href="https://github.com/Ayan-Dini1" target="_blank" rel="noreferrer">
+            GitHub
+          </a>
+        </div>
       </header>
 
-      <section className="about">
-        <h2>About Me</h2>
-        <p>
-          Passionate frontend developer skilled in <strong>React, JavaScript, HTML, CSS</strong>.
-          I enjoy creating user-friendly and visually appealing web applications.
+      <section className="section">
+        <h2>About</h2>
+        <p style={{ color: "var(--muted)", marginTop: 6 }}>
+          I build clean, responsive interfaces with <strong>React</strong>,
+          <strong> JavaScript</strong>, <strong>HTML</strong>, and{" "}
+          <strong>CSS</strong>. I care about clarity, accessibility, and
+          performance.
         </p>
       </section>
 
-      <section className="projects">
+      <div className="hr" />
+
+      <section className="section">
         <h2>Projects</h2>
-        <ul>
-          <li>
-            <a href="https://ayan-dini1.github.io/portfolio" target="_blank" rel="noreferrer">
-              🌐 Portfolio (HTML/CSS/JS Version)
-            </a>
-          </li>
-          <li>
-            <a href="https://github.com/Ayan-Dini1" target="_blank" rel="noreferrer">
-              💻 GitHub Repositories
-            </a>
-          </li>
-        </ul>
+        <div className="grid">
+          {projects.map((p) => (
+            <article key={p.title} className="card">
+              <h3>{p.title}</h3>
+              <p>{p.description}</p>
+              <ul className="tags">
+                {p.stack.map((s) => (
+                  <li key={s}>{s}</li>
+                ))}
+              </ul>
+              <div className="actions">
+                {p.demo && (
+                  <a href={p.demo} target="_blank" rel="noreferrer">
+                    Live
+                  </a>
+                )}
+                {p.repo && (
+                  <a href={p.repo} target="_blank" rel="noreferrer">
+                    Code
+                  </a>
+                )}
+              </div>
+            </article>
+          ))}
+        </div>
       </section>
 
-      <section className="contact">
-        <h2>Contact</h2>
-        <p>Email: <a href="mailto:diniayaaa@gmail.com">diniayaaa@gmail.com</a></p>
-        <p>
-          LinkedIn:{" "}
-          <a href="https://linkedin.com/in/ayan-dini-6658919a" target="_blank" rel="noreferrer">
-            linkedin.com/in/ayan-dini-6658919a
-          </a>
-        </p>
+      <div className="hr" />
+
+      <section className="section">
+        <h2>Skills</h2>
+        <div className="skills">
+          {[
+            "React",
+            "JavaScript (ES6+)",
+            "HTML5",
+            "CSS3",
+            "Responsive UI",
+            "Git & GitHub",
+          ].map((s) => (
+            <span className="skill" key={s}>
+              {s}
+            </span>
+          ))}
+        </div>
       </section>
+
+      <footer className="footer">
+        <p>© {new Date().getFullYear()} Ayan Dini • Built with React</p>
+        <p>
+          Contact:{" "}
+          <a href="mailto:diniayaaaaan@gmail.com">diniayaaaaan@gmail.com</a>
+        </p>
+      </footer>
     </div>
   );
 }
-
-export default App;
