@@ -1,6 +1,7 @@
 import React from "react";
 import "./App.css";
 
+/** Projects shown as cards on the portfolio */
 const projects = [
   {
     title: "Frontend Portfolio (HTML/CSS/JS)",
@@ -18,17 +19,46 @@ const projects = [
     demo: "https://react-portfolio-ten-lilac-30.vercel.app/",
     repo: "https://github.com/Ayan-Dini1/react-portfolio",
   },
-  // Add more projects here when ready
+  {
+    title: "Job Tracker App",
+    description:
+      "Track job applications with status, notes, search/filter, and CSV export.",
+    stack: ["HTML", "CSS", "JavaScript"],
+    demo: "https://comfy-swan-4aa8be.netlify.app",
+    repo: "https://github.com/Ayan-Dini1/Job-tracker-app",
+  },
+  // Uncomment when the Weather app is live:
+  // {
+  //   title: "Weather App",
+  //   description:
+  //     "Real-time weather by city using the free Open-Meteo API.",
+  //   stack: ["HTML", "CSS", "JavaScript", "Open-Meteo"],
+  //   demo: "https://ayan-dini1.github.io/weather-app/",
+  //   repo: "https://github.com/Ayan-Dini1/weather-app",
+  // },
+];
+
+/** Optional: skills row */
+const skills = [
+  "React",
+  "JavaScript (ES6+)",
+  "HTML5",
+  "CSS3",
+  "Responsive UI",
+  "Git & GitHub",
 ];
 
 export default function App() {
   return (
-    <div className="wrapper">
+    <main className="wrapper">
+      {/* Header */}
       <header className="header">
-        <h1 className="title">Hi, I’m Ayan Dini 👋</h1>
-        <p className="subtitle">Frontend Developer • React • JavaScript</p>
+        <h1 className="title">
+          Hi, I’m Ayan Dini <span role="img" aria-label="waving hand">👋</span>
+        </h1>
+        <p className="subtitle">Frontend Developer · React · JavaScript</p>
         <div className="inline-links" style={{ marginTop: 10 }}>
-          <a href="mailto:diniayaaaaan@gmail.com">Email</a>
+          <a href="mailto:diniayaaan@gmail.com">Email</a>
           <a
             href="https://www.linkedin.com/in/ayan-dini-6658919a/"
             target="_blank"
@@ -36,80 +66,66 @@ export default function App() {
           >
             LinkedIn
           </a>
-          <a href="https://github.com/Ayan-Dini1" target="_blank" rel="noreferrer">
+          <a
+            href="https://github.com/Ayan-Dini1"
+            target="_blank"
+            rel="noreferrer"
+          >
             GitHub
           </a>
         </div>
       </header>
 
-      <section className="section">
+      {/* About */}
+      <section className="card">
         <h2>About</h2>
-        <p style={{ color: "var(--muted)", marginTop: 6 }}>
-          I build clean, responsive interfaces with <strong>React</strong>,
-          <strong> JavaScript</strong>, <strong>HTML</strong>, and{" "}
-          <strong>CSS</strong>. I care about clarity, accessibility, and
-          performance.
+        <p>
+          I build clean, responsive interfaces with <strong>React, JavaScript, HTML, and CSS</strong>. I care
+          about clarity, accessibility, and performance.
         </p>
       </section>
 
-      <div className="hr" />
-
-      <section className="section">
+      {/* Projects */}
+      <section className="card">
         <h2>Projects</h2>
-        <div className="grid">
+        <div className="card-grid">
           {projects.map((p) => (
-            <article key={p.title} className="card">
+            <article key={p.title} className="project-card">
               <h3>{p.title}</h3>
-              <p>{p.description}</p>
-              <ul className="tags">
+              <p className="muted">{p.description}</p>
+
+              <div className="tags">
                 {p.stack.map((s) => (
-                  <li key={s}>{s}</li>
+                  <span key={s} className="tag">
+                    {s}
+                  </span>
                 ))}
-              </ul>
-              <div className="actions">
-                {p.demo && (
-                  <a href={p.demo} target="_blank" rel="noreferrer">
-                    Live
-                  </a>
-                )}
-                {p.repo && (
-                  <a href={p.repo} target="_blank" rel="noreferrer">
-                    Code
-                  </a>
-                )}
+              </div>
+
+              <div className="btn-row">
+                <a className="btn" href={p.demo} target="_blank" rel="noreferrer">
+                  Live
+                </a>
+                <a className="btn" href={p.repo} target="_blank" rel="noreferrer">
+                  Code
+                </a>
               </div>
             </article>
           ))}
         </div>
       </section>
 
-      <div className="hr" />
-
-      <section className="section">
+      {/* Skills */}
+      <section className="card">
         <h2>Skills</h2>
-        <div className="skills">
-          {[
-            "React",
-            "JavaScript (ES6+)",
-            "HTML5",
-            "CSS3",
-            "Responsive UI",
-            "Git & GitHub",
-          ].map((s) => (
-            <span className="skill" key={s}>
+        <div className="tags">
+          {skills.map((s) => (
+            <span key={s} className="tag">
               {s}
             </span>
           ))}
         </div>
       </section>
-
-      <footer className="footer">
-        <p>© {new Date().getFullYear()} Ayan Dini • Built with React</p>
-        <p>
-          Contact:{" "}
-          <a href="mailto:diniayaaaaan@gmail.com">diniayaaaaan@gmail.com</a>
-        </p>
-      </footer>
-    </div>
+    </main>
   );
 }
