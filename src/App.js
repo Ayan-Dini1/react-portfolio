@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 
-/** Projects shown as cards on the portfolio */
+/** Projects shown as cards */
 const projects = [
   {
     title: "Frontend Portfolio (HTML/CSS/JS)",
@@ -27,18 +27,9 @@ const projects = [
     demo: "https://comfy-swan-4aa8be.netlify.app",
     repo: "https://github.com/Ayan-Dini1/Job-tracker-app",
   },
-  // Uncomment when the Weather app is live:
-  // {
-  //   title: "Weather App",
-  //   description:
-  //     "Real-time weather by city using the free Open-Meteo API.",
-  //   stack: ["HTML", "CSS", "JavaScript", "Open-Meteo"],
-  //   demo: "https://ayan-dini1.github.io/weather-app/",
-  //   repo: "https://github.com/Ayan-Dini1/weather-app",
-  // },
+  // Add Weather later when it’s live
 ];
 
-/** Optional: skills row */
 const skills = [
   "React",
   "JavaScript (ES6+)",
@@ -57,22 +48,11 @@ export default function App() {
           Hi, I’m Ayan Dini <span role="img" aria-label="waving hand">👋</span>
         </h1>
         <p className="subtitle">Frontend Developer · React · JavaScript</p>
+
         <div className="inline-links" style={{ marginTop: 10 }}>
           <a href="mailto:diniayaaan@gmail.com">Email</a>
-          <a
-            href="https://www.linkedin.com/in/ayan-dini-6658919a/"
-            target="_blank"
-            rel="noreferrer"
-          >
-            LinkedIn
-          </a>
-          <a
-            href="https://github.com/Ayan-Dini1"
-            target="_blank"
-            rel="noreferrer"
-          >
-            GitHub
-          </a>
+          <a href="https://www.linkedin.com/in/ayan-dini-6658919a/" target="_blank" rel="noreferrer">LinkedIn</a>
+          <a href="https://github.com/Ayan-Dini1" target="_blank" rel="noreferrer">GitHub</a>
         </div>
       </header>
 
@@ -80,35 +60,31 @@ export default function App() {
       <section className="card">
         <h2>About</h2>
         <p>
-          I build clean, responsive interfaces with <strong>React, JavaScript, HTML, and CSS</strong>. I care
-          about clarity, accessibility, and performance.
+          I build clean, responsive interfaces with <strong>React, JavaScript, HTML, and CSS</strong>.
+          I care about clarity, accessibility, and performance.
         </p>
       </section>
 
-      {/* Projects */}
+      {/* Projects (mapped from array) */}
       <section className="card">
         <h2>Projects</h2>
         <div className="card-grid">
           {projects.map((p) => (
             <article key={p.title} className="project-card">
               <h3>{p.title}</h3>
-              <p className="muted">{p.description}</p>
+              {p.description && <p className="muted">{p.description}</p>}
 
-              <div className="tags">
-                {p.stack.map((s) => (
-                  <span key={s} className="tag">
-                    {s}
-                  </span>
-                ))}
-              </div>
+              {p.stack?.length > 0 && (
+                <div className="tags">
+                  {p.stack.map((s) => (
+                    <span key={s} className="tag">{s}</span>
+                  ))}
+                </div>
+              )}
 
               <div className="btn-row">
-                <a className="btn" href={p.demo} target="_blank" rel="noreferrer">
-                  Live
-                </a>
-                <a className="btn" href={p.repo} target="_blank" rel="noreferrer">
-                  Code
-                </a>
+                {p.demo && <a className="btn" href={p.demo} target="_blank" rel="noreferrer">Live</a>}
+                {p.repo && <a className="btn" href={p.repo} target="_blank" rel="noreferrer">Code</a>}
               </div>
             </article>
           ))}
@@ -120,9 +96,7 @@ export default function App() {
         <h2>Skills</h2>
         <div className="tags">
           {skills.map((s) => (
-            <span key={s} className="tag">
-              {s}
-            </span>
+            <span key={s} className="tag">{s}</span>
           ))}
         </div>
       </section>
